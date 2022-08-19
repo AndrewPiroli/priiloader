@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "mount.h"
 
 u8 GeckoFound = 0;
-u8 DumpDebug = 0;
+u8 DumpDebug = 1;
 
 void CheckForGecko( void )
 {
@@ -35,8 +35,8 @@ void CheckForGecko( void )
 }
 void gprintf( const char *str, ... )
 {
-	if(!GeckoFound && !DumpDebug)
-		return;
+//	if(!GeckoFound && !DumpDebug)
+//		return;
 
 	char astr[2048];
 	s32 size = 0;
@@ -61,13 +61,13 @@ void gprintf( const char *str, ... )
 	size = vsnprintf( astr, 2047, nstr, ap );
 	va_end(ap);
 
-	if(GeckoFound)
-	{
-		usb_sendbuffer( 1, astr, size );
-		usb_flush(EXI_CHANNEL_1);
-	}
-	if (DumpDebug > 0 && GetMountedFlags() > 0)
-	{
+//	if(GeckoFound)
+//	{
+//		usb_sendbuffer( 1, astr, size );
+//		usb_flush(EXI_CHANNEL_1);
+//	}
+//	if (DumpDebug > 0 && GetMountedFlags() > 0)
+//	{
 		FILE* fd = fopen(BuildPath("/prii.log").c_str(), "ab");
 		if(fd != NULL)
 		{
@@ -81,7 +81,7 @@ void gprintf( const char *str, ... )
 			fwrite(astr,1,size,fd);
 			fclose(fd);
 		}
-	}
+//	}
 	return;
 }
 void SetDumpDebug( u8 value )
