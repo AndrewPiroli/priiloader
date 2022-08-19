@@ -1761,7 +1761,7 @@ int main(int argc, char **argv)
 			}
     	}
 
-		if (pDown & WPAD_BUTTON_PLUS || GCpDown & PAD_BUTTON_A)
+		if (1)
 		{
 			//install Priiloader
 			printf("\x1b[2J");
