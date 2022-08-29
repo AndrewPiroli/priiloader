@@ -88,11 +88,11 @@ void SetDumpDebug( u8 value )
 {
 	if (value != 1 && value != 0)
 	{
-		DumpDebug = 0;
+		DumpDebug = 1;
 		return;
 	}
 	DumpDebug = value;
-	if (DumpDebug > 0 && GetMountedFlags() > 0)
+	if (1)
 	{
 		//create file, or re-open and add lining
 		FILE* fd = fopen(BuildPath("/prii.log").c_str(), "ab");
@@ -105,7 +105,7 @@ void SetDumpDebug( u8 value )
 		else
 		{
 			//we failed. fuck this shit
-			DumpDebug = 0;
+			DumpDebug = 1;
 		}
 	}
 	return;
