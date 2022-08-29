@@ -68,7 +68,7 @@ void gprintf( const char *str, ... )
 //	}
 //	if (DumpDebug > 0 && GetMountedFlags() > 0)
 //	{
-		FILE* fd = fopen(BuildPath("/prii.log").c_str(), "ab");
+		FILE* fd = fopen("sd:/prii.log", "ab");
 		if(fd != NULL)
 		{
 			//0x0D0A = \r\n
