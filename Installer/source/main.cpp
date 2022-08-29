@@ -190,6 +190,13 @@ void abort_pre_init(const char* msg, ...)
 }
 void abort(const char* msg, ...)
 {
+	*(vu32*)0x8132FFFB=0x4461636F;
+	*(vu32*)0x817FEFF0=0x4461636F;
+	DCFlushRange((void*)0x8132FFFB, 4);
+	DCFlushRange((void*)0x817FEFF0, 4);
+	WII_LaunchTitle((u64)0x0000000100000002);
+	exit(0);
+	/*
 	va_list args;
 	char text[4096];
 	va_start( args, msg );
@@ -202,7 +209,7 @@ void abort(const char* msg, ...)
 	printf("exiting...\r\n");
 	printf("\x1b[%d;%dm", 37, 1);
 	VIDEO_WaitVSync();
-	exit(0);
+	exit(0);*/
 }
 
 bool CheckvWii (void) {
